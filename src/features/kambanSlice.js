@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    column: {
-        id: [],
-        labels: [],
-        length:[]
-    },
-    cards: []
+    kambanBoard:[
+        {
+            titles: '',
+            tasks: []
+        }
+    ]
 }
 
 export const kambanBoard = createSlice({
@@ -14,16 +14,11 @@ export const kambanBoard = createSlice({
     initialState,
     reducers: {
         addColumn: (state,action)=> {
-            state.column.id = action.payload
-            state.column.labels = action.payload
-            state.column.length = action.payload
+            state.kambanBoard.titles = action.payload
         },
-        addCard: (state,action)=> {
-            state.cards.id = action.payload
-            state.cards.content = action.payload
-            state.cards.priority = action.payload
+        addTasks: (state,action)=> {
+            state.kambanBoard.tasks = action.payload
         },
-
     }
 })
 

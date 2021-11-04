@@ -3,13 +3,13 @@
     flex-direction: row;
     background: rgb(245, 245, 245);
     width: 95vw;
-    height: 80vh;
+    height: 45rem;
     border-radius: 10px;
-    margin: 20px auto;
-    overflow: auto;
+    margin: 2.5rem auto;
+    overflow-x: scroll;
+    overflow-y: none;
     box-shadow: rgb(220, 220, 220) 1px 3px 2px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
     padding: 5px;
-
 
     .addColumns{ 
         height: 40px;
@@ -29,11 +29,17 @@
         display: flex;
         flex-direction: row;
         height: max-content;
-        
+        width: max-content;
+
+        .columns{
+            height: 40rem;
+        }
         .column{
             display: flex;
             flex-direction: column;
             min-width: 20rem;
+            height: min-content;
+            max-height: 42rem;
             margin: 10px;
             padding: 15px;
             background: rgb(250, 250, 250);
@@ -41,15 +47,30 @@
             border: 1px solid rgb(225, 225, 225);
             border-radius: 5px;
             text-align: center;
+            overflow-y:scroll;
+            overflow-x: hidden;
+            & > input {
+                border: 1px solid lightgrey;
+                padding: 10px;
+                margin-bottom: 2px;
+            }
         }
 
         .dndItems{
+            display: flex;
+            flex-direction: row;
             background: white;
             border: 1px solid lightgrey;
             padding: 10px;
             margin: 2px auto;
             width: 18rem;
-            text-align:start
+            text-align:start;
+            justify-content: space-between;
+            & > span {
+                background-color: rgb(232, 232, 232);
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
         }
         .addTask{
             display: flex;
