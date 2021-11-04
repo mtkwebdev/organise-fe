@@ -1,0 +1,90 @@
+
+.taskCard{
+    display: flex;
+    margin: 10px auto;
+    padding: 5px 10px;
+    border: 1px rgba(0, 0, 0, 0.187) solid;
+    text-justify: distribute;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 15rem;
+}
+
+.taskCardPriority{
+    flex-direction: column;
+    width: auto;
+    border: solid 1px lightgrey;
+    background: none;
+    border-radius: 3px;
+    margin: 10px auto;
+    padding: 5px;
+    font-size: 0.7rem;
+    align-self: flex-start;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.cardPrioritySet{
+    background: rgb(44, 44, 44);
+}
+.cardPriorityHigh{
+    background: red;
+}
+.cardPriorityMedium{
+    background: orange;
+}
+.cardPriorityLow{
+    background: green;
+}
+
+.taskCardText {
+    overflow: auto;
+    max-height: 100%; 
+    font-size: 1rem;
+    margin: 1rem 1rem;
+    padding: 0px;
+    border-radius: 3px;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    outline: none;
+    overflow: auto;
+    resize: vertical;
+    text-align: center;
+    // box-shadow: rgba(0, 0, 0, 0.10) 1px 4px 5px 1px inset;
+}
+
+.taskCardSubtitle{
+    font-size: 0.7rem;
+    padding: 0px;
+    margin: auto;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.cardActionsBottom{
+    display: flex;
+    flex-direction: row;
+}
+
+.cardSoftwareActions{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    border: solid 1px lightgrey;
+    background: none;
+    border-radius: 3px;
+    margin: 10px auto;
+    padding: 5px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    align-self: flex-start;
+    text-decoration: none;
+    // text-align: center;
+}
+
+.cardSoftwareActions:hover{
+    background: rgb(44, 44, 44);
+    color: white;
+    font-weight: 600;
+}

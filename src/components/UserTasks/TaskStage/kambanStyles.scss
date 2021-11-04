@@ -1,0 +1,72 @@
+.dndContainer {
+    display: flex;
+    flex-direction: row;
+    background: rgb(245, 245, 245);
+    width: 95vw;
+    height: 80vh;
+    border-radius: 10px;
+    margin: 20px auto;
+    overflow: auto;
+    box-shadow: rgb(220, 220, 220) 1px 3px 2px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    padding: 5px;
+
+
+    .addColumns{ 
+        height: 40px;
+        min-width: 250px;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        padding: 5px;
+        text-align: center;
+        background: rgb(250, 250, 250);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border: 1px solid rgb(225, 225, 225);
+        border-radius: 5px;
+    }
+
+    .dndGroups {
+        display: flex;
+        flex-direction: row;
+        height: max-content;
+        
+        .column{
+            display: flex;
+            flex-direction: column;
+            min-width: 20rem;
+            margin: 10px;
+            padding: 15px;
+            background: rgb(250, 250, 250);
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border: 1px solid rgb(225, 225, 225);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .dndItems{
+            background: white;
+            border: 1px solid lightgrey;
+            padding: 10px;
+            margin: 2px auto;
+            width: 18rem;
+            text-align:start
+        }
+        .addTask{
+            display: flex;
+            align-self: center;
+            justify-content: center;
+            box-shadow: rgba(0, 0, 0, 0.50) 0px 1px 3px;
+            background: rgba(0, 113, 219, 0.8);
+            width: 100%;
+            height: 25px;
+            color: rgb(255, 255, 255);
+            border-radius: 0px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin: 5px;
+            padding: 2px;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+[{
+    "id": 0,
+    "cardTitle": "",
+    "cardDate": "",
+    "cardDesignation": "",
+    "cardPriority": "high",
+    "cardComplete": false,
+    "cardArchive": false,
+    "cardContent": ""},
+    {
+        "id": 1,
+        "cardTitle": "",
+        "cardDate": "",
+        "cardDesignation": "",
+        "cardPriority": "medium",
+        "cardComplete": false,
+        "cardArchive": false,
+        "cardContent": ""},
+    {
+        "id": 2,
+        "cardTitle": "",
+        "cardDate": "",
+        "cardDesignation": "",
+        "cardPriority": "low",
+        "cardComplete": false,
+        "cardArchive": false,
+        "cardContent": ""}
+]
