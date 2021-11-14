@@ -1,10 +1,9 @@
 import React from 'react'
-// import Header from '../components/SiteStructure/Header/Header'
-
+import Blogs from '../components/BlogComponent/Blogs'
 function LandingPage() {
     return (
         <div>
-            <p>Landing Page</p>
+            <Blogs/>
         </div>
     )
 }

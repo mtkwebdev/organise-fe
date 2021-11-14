@@ -54,6 +54,10 @@
                 padding: 10px;
                 margin-bottom: 2px;
             }
+            .addColumnTitle{
+                 border: 0px none;
+                 background: none;
+             }
         }
 
         .dndItems{
@@ -68,7 +72,7 @@
             justify-content: space-between;
             & > span {
                 background-color: rgb(232, 232, 232);
-                padding: 5px 10px;
+                padding: 0px 5px;
                 border-radius: 5px;
             }
         }

@@ -1,99 +1,127 @@
-import React, {useState, useRef} from 'react'
-// import TaskCard from '../Cards/TaskCard'
-// import TaskColumns from './TaskColumns'
-// import './TasksDisplay.scss'
+
+import React, {useState, useEffect} from 'react'
 import './kambanStyles.scss'
-// import {Card} from 'react-bootstrap'
 
 function Kamban() {
 
-const defaultState = [    
-    {
-        titles: 'Column 1',
-        tasks: [
-            'This is a task 1,1',
-            'This is a task 2,1',
+    const mockKanbanData = [    
+        {
+                titles: 'Column 1',
+                tasks: [
+                    'This is a task',
+                    'This is a wef;kwefwefkwe;fk',
+                ]
+            },
+            {
+                titles: 'Column 2',
+                tasks: [
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                    'This is a task',
+                ]
+            },
+            {
+                titles: 'Column 3',
+                tasks: [
+                   'This is a task',
+                   'This is a task',
+                   'This is a task',
+                ]
+            },
+            {
+                titles: 'Column 4',
+                tasks: []
+            },
         ]
-    },
-    {
-        titles: 'Column 2',
-        tasks: [
-            'This is a task 1,2',
-            'This is a task 2,2',
-            'This is a task 2,3',
-            'This is a task 2,4',
-            'This is a task 2,5',
-            'This is a task 2,6',
-            'This is a task 2,7',
-            'This is a task 2,8',
-            'This is a task 2,9',
-        ]
-    },
-    {
-        titles: 'Column 3',
-        tasks: [
-           'This is a task 3,1',
-           'This is a task 3,2',
-           'This is a task 3,3',
-        ]
-    },
-    {
-        titles: 'Column 4',
-        tasks: []
-    },
-]
 
-const stateTemplate = {
-    titles: '',
-    tasks: [
-       'This is a task',
-    ]
+const [content, setContent] = useState(mockKanbanData)
+// useState([
+//     {   titles: '',
+//         tasks: ['']}
+// ]) 
+
+// useEffect(() => {
+//     console.log(content)
+// }, [content])
+
+function addCol(){
+    if (content.length < 0) {
+        setContent({titles: 'Column', tasks: ['']})
+    } else {
+    setContent(content.concat({titles: 'Column', tasks: ['']}))}
+    console.log(content)
 }
 
-const [content, setContent] = useState(defaultState) 
-
-const newTask = useRef()
-
-function addNewColumn(addTitle){
-    setContent({
-        titles: addTitle,
-        tasks: []})
+function logPointer(column, task, content){
+    console.log("Column: "+column, "Task: "+task, "content: "+ content)
 }
-// function addNewTask(e, parentColumn){
-function addNewTask(){
-    // console.log(parentColumn.concat({task:[e.target.value]}))
-    console.log('hello')
+// logPointer(column, columnIndex+1, column.titles)}
+
+function titles(e, i){
+    console.log(...content, content[i].titles = e.target.value)
 }
 
-    if (content) {
+function saveTasks(e, i, ii){
+    console.log(...content, content[i].tasks[ii] = e.target.value)
+}
+
+function  addNewTask(){
+    // let newTask = Object.assign({}, {
+    //     titles: '',
+    //     tasks: [''],
+    // })
+    console.log(...content, [content.tasks].concat('newTask'))
+}
+
+if (content.length > 0){
         return (
             <div className="dndContainer">
                 <div className="dndGroups">
-                    {content.map((column)=>(
-                    <div key={column.titles.length +1} className="columns">
-                        <div className="column">
-                        {column.titles}
-                            <div className="addTask" onCLick={addNewTask}>Add Task</div> 
-                            {/* <input name='task' placeholder="Type New Task Here!" type="text"  onBlur={(e)=>{addNewTask(e,column.tasks)}}/> */}
-                            <input name='task' placeholder="Type New Task Here!" type="text" ref={newTask} />
-                                {column.tasks.map((task)=>(
-                            <div key={column.tasks.length} draggable onClick={()=>{console.log(column.titles, task)}} className="dndItems">
-                                    {task}
-                                    <span>edit</span>
-                            </div>
-                                ))}
-                        </div>
-                    </div>
+                    {content.length > 0 ? content.map((column, columnIndex)=>(
+        <div key={(columnIndex+1, column.titles, Math.random()) } draggable  className="columns">
+            <div className="column">
+                <input className="addColumnTitle" type="text" onBlur={(e)=>{titles(e, columnIndex)}} />
+                <div className="addTask" onClick={()=>{addNewTask()}}>Add Task</div>                        
+                    {column.tasks.map((task, taskIndex)=>(
+                <input key={(columnIndex+1, task+1, Math.random())} name='task' placeholder={task} onBlur={(e)=>{saveTasks(e, columnIndex, taskIndex)}} type="text"  />
                     ))}
+            </div>
+        </div>
+        )):null}
                 </div>
-                <div className="addColumns" onClick={addNewColumn}>Add a group</div>
+                <div className="addColumns" onClick={()=>{addCol()}}> + Add a group of Tasks</div>
+                {/* need to use Redux to set out template data, useDispatch to add new tasks to state, useSelector to display data */}
             </div>
         )
     }
     else {
         return (
             <div className="dndContainer">
-            <div className="addColumns" >Add a group</div>
+            <div className="addColumns" onClick={()=>{addCol()}}> + Add a group of Tasks</div>
             </div>
         )
     }
