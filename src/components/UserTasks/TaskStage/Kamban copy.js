@@ -77,3 +77,13 @@ function swapColumns (e, index, column, taskIndex, task){
 }
 
 export default Kamban
+
+// {column.tasks.map((task, taskIndex)=>(
+//     <div>
+//         <span><input key={(columnIndex+1, task+1, Math.random())} name='task' placeholder={task} onBlur={(e)=>{saveTasks(e, columnIndex, taskIndex)}} type="text" className="dndItems" /></span><span className="editBtn">...</span>
+//     </div>
+// ))}
+
+// taskClick ? {task} <span>...</span> : (<input type="text" placeholder={task}/> 
+
+//  {taskClick ? task : <input type="text" placeholder={task}/>}

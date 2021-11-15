@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect} from 'react'
+import React, {useState, useRef} from 'react'
 import './kambanStyles.scss'
 
 function Kamban() {
@@ -59,20 +59,23 @@ function Kamban() {
         ]
 
 const [content, setContent] = useState(mockKanbanData)
+const [taskClick, setTaskClick] = useState(false)
+
+const taskRef = useRef(null)
 // useState([
 //     {   titles: '',
 //         tasks: ['']}
 // ]) 
 
 // useEffect(() => {
-//     console.log(content)
+//     setContent(data)
 // }, [content])
 
 function addCol(){
     if (content.length < 0) {
         setContent({titles: 'Column', tasks: ['']})
     } else {
-    setContent(content.concat({titles: 'Column', tasks: ['']}))}
+    setContent(content.concat({titles: 'Column', tasks: []}))}
     console.log(content)
 }
 
@@ -97,21 +100,41 @@ function  addNewTask(){
     console.log(...content, [content.tasks].concat('newTask'))
 }
 
-if (content.length > 0){
+function editTask( e, column, taskIndex, task){
+    taskRef.addEventListener('click', ()=>{
+        if (e.target.matches === column + taskIndex){
+        return (taskClick ? {task} : <input key={Math.random()} type="text" placeholder={task}/>)}
+        console.log(e.target.matches === column + taskIndex)
+    })
+}
+
+function logRef(){
+    console.log(taskRef)
+}
+
+if (content.length > 1 ){
         return (
             <div className="dndContainer">
                 <div className="dndGroups">
-                    {content.length > 0 ? content.map((column, columnIndex)=>(
-        <div key={(columnIndex+1, column.titles, Math.random()) } draggable  className="columns">
-            <div className="column">
-                <input className="addColumnTitle" type="text" onBlur={(e)=>{titles(e, columnIndex)}} />
-                <div className="addTask" onClick={()=>{addNewTask()}}>Add Task</div>                        
-                    {column.tasks.map((task, taskIndex)=>(
-                <input key={(columnIndex+1, task+1, Math.random())} name='task' placeholder={task} onBlur={(e)=>{saveTasks(e, columnIndex, taskIndex)}} type="text"  />
-                    ))}
-            </div>
-        </div>
-        )):null}
+                    { content.map((column, columnIndex)=>(
+                        <div key={(columnIndex+1, column.titles, Math.random()) } draggable  className="columns">
+                            <div className="column">
+                                <input className="addColumnTitle" type="text" onBlur={(e)=>{titles(e, columnIndex)}} />
+                                <div className="addTask" onClick={()=>{addNewTask()}}>Add Task</div>                        
+                                    {column.tasks.map((task, taskIndex)=>(
+                                        <div>
+                                            {/* <span><input key={(columnIndex+1, task+1, Math.random())} name='task' placeholder={task} onBlur={(e)=>{saveTasks(e, columnIndex, taskIndex)}} type="text" className="dndItems" /></span><span className="editBtn">...</span> */}
+                                            <div key={(columnIndex+1, task+1, Math.random())} draggable onDoubleClick={()=>{setTaskClick(!taskClick)}} className="dndItems" ref={taskRef}>    
+                                                {/* {task} */}
+                                                {(column + taskIndex && taskClick) ? <div key={Math.random}>{task}</div> : <input key={Math.random()} type="text" placeholder={task}/>}
+                                                {/* {(e)=>{editTask(e,columnIndex, taskIndex, task) */}
+                                            </div>
+                                        </div>
+                                    ))}
+                                    
+                            </div>
+                        </div>
+                     ))}
                 </div>
                 <div className="addColumns" onClick={()=>{addCol()}}> + Add a group of Tasks</div>
                 {/* need to use Redux to set out template data, useDispatch to add new tasks to state, useSelector to display data */}
