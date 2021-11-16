@@ -3,25 +3,38 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     kambanBoard:[
         {
-            titles: '',
-            tasks: []
-        }
+            titles: 'Column 1',
+            tasks: ['task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task']
+        },
+        {
+            titles: 'Column 2',
+            tasks: ['task' ]
+        },
+        {
+            titles: 'Column 3',
+            tasks: ['task', 'task' ]
+        },
+
     ]
 }
 
-export const kambanBoard = createSlice({
+export const kambanSlice = createSlice({
     name: "kambanBoard",
     initialState,
     reducers: {
         addColumn: (state,action)=> {
-            state.kambanBoard.titles = action.payload
+            state.titles = action.payload
         },
         addTasks: (state,action)=> {
-            state.kambanBoard.tasks = action.payload
+            state.tasks = action.payload
         },
+        kambanState: (state = initialState, action) => {
+            state = action.payload
+        }
+        
     }
 })
 
-export const { addColumn, addCard} = kambanBoard.actions
+export const { addColumn, addCard, kambanState} = kambanSlice.actions
 
-export default kambanBoard.reducer
+export default kambanSlice.reducer
