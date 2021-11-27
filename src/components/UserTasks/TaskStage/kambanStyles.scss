@@ -65,7 +65,10 @@
                 & > input {
                    padding: 10px;
                    border: 1px lightgrey solid;
-                   width: 16rem;
+                   width: 16.2rem;
+                   border-radius: 5px 0px 0px 5px;
+                   border-right: none;
+                   outline: none;
                }
                & > span {
                    justify-self: center;
@@ -78,29 +81,40 @@
                    border: 1px solid rgb(0, 102, 255);
                    color: white;
                    font-weight: 800;
-                margin-left: -1px;
+                   border-radius: 0px 5px 5px 0px;
+                    margin-left: -1px;
+                    border-left: none;
                }
             }
         }
 
-        span {      
-            background-color: rgb(232, 232, 232);
-            padding: 5px 10px;
-            border-radius: 5px;}
-
         .dndItems{
             display: flex;
             flex-direction: row;
-            background: white;
-            // border: 1px solid lightgrey;
+            background: none;
             border-radius: 5px;
             box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 1.6px;
             border: 1px solid lightgrey;
-            padding: 15px;
             margin: 0.3rem auto;
             width: 18rem;
             text-align:start;
             justify-content: space-between;
+            & > div {
+                width: 80%;
+                height: 100%;
+                padding: 15px;
+                text-overflow:ellipsis;
+                overflow:hidden;
+            }
+
+            & > span {
+                justify-self: center;
+                align-self: center;
+                background-color: rgb(232, 232, 232);
+                padding: 1rem 10px;
+                border-radius: 5px;
+                height: 100%;
+            }
         }
         // .addTask{
         //     display: flex;

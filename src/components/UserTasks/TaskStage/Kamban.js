@@ -1,37 +1,47 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
-// import TaskCard from '../Cards/TaskCard'
-// import TaskColumns from './TaskColumns'
-// import './TasksDisplay.scss'
+import React, {useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {addColumn, addCard, kambanState} from '../../../features/kambanSlice.js'
 import './kambanStyles.scss'
-// import {Card} from 'react-bootstrap'
+
 
 function Kamban() {
 
-// const dispatch = useDispatch()
+const dispatch = useDispatch()
 const boardData = useSelector(state => {return state.kambanSlice.kambanBoard})
+const stateTitles = useSelector(state => {return state.kambanSlice.kambanBoard.titles})
+const stateTasks = useSelector(state => {return state.kambanSlice.kambanBoard.tasks})
 
+const [boardState, setBoardState] = useState()
 
-  
+function addColumns(){
+    dispatch(addColumn('new Column'))
+    // console.log(stateTitles)
+    {console.log(boardData)}
+}
+
         return (
             <div className="dndContainer">
-            <div className="dndGroups">
-
-           {boardData.map((board)=>{
-               return (<div key={Math.random()} className="column">
+                {/* <div className="dndGroups">
+                
+                {boardData.map((board, boardIndex)=>{
+                return (
+                    <div key={Math.random()} className="column" >
                         <input type="text" placeholder="Add a List Title?" className="listTitle"/>
                         <div className="addTasks">
                             <input type="text" placeholder="Add a New Task?" className="newTask"/><span>+</span>
                         </div>
-                        {board.tasks.map((task)=>{
-                            return (<div className="dndItems">
-                                        <div>{task}</div><span>...</span>
-                                    </div>
-                                    )})}
-                        </div>)
-           })}
-            </div>
-            <div className="addColumns" > + Add a List</div>
+                        {board.tasks.map((task, taskIndex)=>{
+                            return (
+                                <div key={Math.random()} draggable className="dndItems" 
+                                onDragEnter={()=>{console.log(boardIndex, 'x', taskIndex )}}>
+                                    <div >{task}</div><span>...</span>
+                                </div>
+                            )})}
+                    </div>)
+                })}
+                </div> */}
+                <div className="addColumns" onClick={()=>{addColumns()}}> + Add a List</div>
+                {console.log(boardData)}
             </div>
         )
         

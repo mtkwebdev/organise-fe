@@ -4,7 +4,7 @@ const initialState = {
     kambanBoard:[
         {
             titles: 'Column 1',
-            tasks: ['task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task', 'task']
+            tasks: ['tawefwefkw;efkw;efkwefkweofkw;efksk', 'task', 'task']
         },
         {
             titles: 'Column 2',
@@ -22,14 +22,17 @@ export const kambanSlice = createSlice({
     name: "kambanBoard",
     initialState,
     reducers: {
-        addColumn: (state,action)=> {
-            state.titles = action.payload
+        // Column: (state,action)=> {
+        //     state.titles. = action.payload
+        // },
+        addColumn: (state = initialState, action)=> {
+            state.kambanBoard.push({titles: action.payload})
         },
         addTasks: (state,action)=> {
             state.tasks = action.payload
         },
-        kambanState: (state = initialState, action) => {
-            state = action.payload
+        kambanState: (state, action) => {
+            state = state.push(action.payload)
         }
         
     }
