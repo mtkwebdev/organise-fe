@@ -22,7 +22,7 @@ export const kambanSlice = createSlice({
     initialState,
     reducers: {
         addColumn: (state = initialState, action)=> {
-            state.kambanBoard.push({titles: action.payload})
+            state.kambanBoard.push({titles: action.payload, tasks: []})
         },
         addTasks: (state = initialState, action)=> {
             let {index, task} = action.payload
