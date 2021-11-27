@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {addColumn, addTasks} from '../../../features/kambanSlice.js'
 import './kambanStyles.scss'
@@ -11,20 +11,35 @@ const boardData = useSelector(state => {return state.kambanSlice.kambanBoard})
 const stateTitles = useSelector(state => {return state.kambanSlice.kambanBoard.titles})
 const stateTasks = useSelector(state => {return state.kambanSlice.kambanBoard.tasks})
 
+// mapping and updating Kamban board state
 const [boardState, setBoardState] = useState(boardData)
-
+const [value, setValue] = useState({
+    title: '',
+    task: ''
+})
 useEffect(() => {
     setBoardState(boardData)
 }, [boardData])
+
+// input values
+const columnValue = useRef(null)
+const taskValue = useRef(null)
+const innerTaskText = taskValue.value
 
 function columns(){
     dispatch(addColumn('new Column'))
     // {console.log(boardData)}
 }
 
-function tasks(boardIndex){
-    dispatch(addTasks({index: boardIndex, task:'tings'}))
-    // {console.log(boardData)}
+function tasks(boardIndex, value){
+    // dispatch(addTasks({index: boardIndex, task:'tings'}))
+    if (value === '' || (undefined || null)){return } else {dispatch(addTasks({index: boardIndex, task: value}))}
+    console.log(value)
+}
+
+function collectData(collected){
+    setValue(collected)
+    console.log(collected)
 }
 
         return (
@@ -32,10 +47,12 @@ function tasks(boardIndex){
                 <div className="dndGroups">
                 {boardState.map((board, boardIndex)=>{
                 return (
-                    <div key={Math.random()} className="column" >
-                        <input type="text" placeholder="Add a List Title?" className="listTitle"/>
+                    <div draggable key={Math.random()} className="column" >
+                    {/* <div className="handle">::::</div> */}
+                        <input  type="text" placeholder="Click here to add a Title!" className="listTitle"/>
                         <div className="addTasks">
-                            <input type="text" placeholder="Add a New Task?" className="newTask"/><span onClick={()=>{tasks(boardIndex)}}>+</span>
+                            <input type="text" placeholder="Add a New Task?" className="newTask"  ref={taskValue} onBlur={(e)=>{tasks(boardIndex, e.target.value)}}/>
+                            <span>+</span>
                         </div>
                         {board.tasks.map((task, taskIndex)=>{
                             return (
