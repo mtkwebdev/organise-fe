@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {addColumn, addCard, kambanState} from '../../../features/kambanSlice.js'
+import {addColumn, addTasks} from '../../../features/kambanSlice.js'
 import './kambanStyles.scss'
 
 
@@ -15,7 +15,11 @@ const [boardState, setBoardState] = useState()
 
 function addColumns(){
     dispatch(addColumn('new Column'))
-    // console.log(stateTitles)
+    {console.log(boardData)}
+}
+
+function tasks(){
+    dispatch(addTasks({index: 1, task:'tings'}))
     {console.log(boardData)}
 }
 
@@ -40,7 +44,7 @@ function addColumns(){
                     </div>)
                 })}
                 </div> */}
-                <div className="addColumns" onClick={()=>{addColumns()}}> + Add a List</div>
+                <div className="addColumns" onClick={()=>{tasks()}}> + Add a List</div>
                 {console.log(boardData)}
             </div>
         )

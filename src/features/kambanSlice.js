@@ -14,7 +14,6 @@ const initialState = {
             titles: 'Column 3',
             tasks: ['task', 'task' ]
         },
-
     ]
 }
 
@@ -25,12 +24,21 @@ export const kambanSlice = createSlice({
         addColumn: (state = initialState, action)=> {
             state.kambanBoard.push({titles: action.payload})
         },
-        addTasks: (state,action)=> {
-            state.tasks = action.payload
+        addTasks: (state = initialState, action)=> {
+            let {index, task} = action.payload
+
+            if (index >= (state.kambanBoard.length - 1)) {
+                index = (state.kambanBoard.length - 1)
+                state.kambanBoard[index].tasks.push(task)
+              } 
+              if (index < (state.kambanBoard.length - 1)) {
+                state.kambanBoard[index].tasks.push(task)
+              }
+           console.log(index, task, state.kambanBoard.length)
         }
     }
 })
 
-export const { addColumn, addCard, kambanState} = kambanSlice.actions
+export const { addColumn, addTasks, kambanState} = kambanSlice.actions
 
 export default kambanSlice.reducer
