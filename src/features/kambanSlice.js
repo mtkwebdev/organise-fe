@@ -34,6 +34,11 @@ export const kambanSlice = createSlice({
                 state.kambanBoard[index].tasks.push(task)
               }
            console.log(index, task, state.kambanBoard.length)
+        },
+        dragActions: (state = initialState, action)=>{
+            const {index1, index2, task1, task2} = action.payload
+                state.kambanBoard[index1].tasks = task1
+                state.kambanBoard[index2].tasks = task2
         }
     }
 })
