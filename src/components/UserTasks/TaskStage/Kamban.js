@@ -73,8 +73,8 @@ function Kamban() {
                             // onDragStart={()=>{dragEvents(boardIndex)}}
                             // onDragStart={()=>{setDrag(drag.start, boardIndex)}}
                             // onDragEnd={()=>{setDrag(drag.end, boardIndex); console.log(drag)}}
-                            onDragStart={()=>{setDrag(drag.start = [boardIndex]); console.log("started " + drag.start)}}
-                            onDragEnter={()=>{setDrag(drag.end = [boardIndex]); console.log("ended " + drag.end)}}
+                            // onDragStart={()=>{setDrag(drag.start = [boardIndex]); console.log("started " + drag.start)}}
+                            // onDragEnter={()=>{setDrag(drag.end = [boardIndex]); console.log("ended " + drag.end)}}
                             >
                                 <input className="listTitle" type="text" placeholder="Click here to add a Title!" />
                                 <div className="addTasks">
