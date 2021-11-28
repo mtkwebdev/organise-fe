@@ -5,7 +5,6 @@ import './kambanStyles.scss'
 
 
 function Kamban() {
-
 const dispatch = useDispatch()
 const boardData = useSelector(state => {return state.kambanSlice.kambanBoard})
 const stateTitles = useSelector(state => {return state.kambanSlice.kambanBoard.titles})
@@ -45,24 +44,31 @@ function collectData(collected){
         return (
             <div className="dndContainer">
                 <div className="dndGroups">
-                {boardState.map((board, boardIndex)=>{
-                return (
-                    <div draggable key={Math.random()} className="column" >
-                    {/* <div className="handle">::::</div> */}
-                        <input  type="text" placeholder="Click here to add a Title!" className="listTitle"/>
-                        <div className="addTasks">
-                            <input type="text" placeholder="Add a New Task?" className="newTask"  ref={taskValue} onBlur={(e)=>{tasks(boardIndex, e.target.value)}}/>
-                            <span>+</span>
-                        </div>
-                        {board.tasks.map((task, taskIndex)=>{
-                            return (
-                                <div key={Math.random()} draggable className="dndItems" 
-                                onDragEnter={()=>{console.log(boardIndex, 'x', taskIndex )}}>
-                                    <div >{task}</div><span>...</span>
+                    {boardState.map((board, boardIndex)=>{
+                            {/* Columns */}
+                        return (
+                            
+                            <div draggable key={Math.random()} className="column" >
+                                <input  type="text" placeholder="Click here to add a Title!" className="listTitle"/>
+                                <div className="addTasks">
+                                    <input type="text" placeholder="Add a New Task?" className="newTask"  
+                                    ref={taskValue} onBlur={(e)=>{tasks(boardIndex, e.target.value)}}/>
+                                    <span>+</span>
                                 </div>
-                            )})}
-                    </div>)
-                })}
+
+                                {/* Task Cards */}
+                                {board.tasks.map((task, taskIndex)=>{
+                                    return (
+
+                                        <div key={Math.random()} draggable className="dndItems" 
+                                        onDragEnter={()=>{console.log(boardIndex, 'x', taskIndex )}}>
+                                            <div >{task}</div><span>...</span>
+                                        </div>
+
+                                    )})}
+
+                            </div>)
+                    })}
                 </div> 
                 <div className="addColumns" onClick={()=>{columns()}}> + Add a List</div>
                 {console.log(boardData)}

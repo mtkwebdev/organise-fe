@@ -26,7 +26,6 @@ export const kambanSlice = createSlice({
         },
         addTasks: (state = initialState, action)=> {
             let {index, task} = action.payload
-
             if (index >= (state.kambanBoard.length - 1)) {
                 index = (state.kambanBoard.length - 1)
                 state.kambanBoard[index].tasks.push(task)
