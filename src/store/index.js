@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
-import kambanBoard from "../features/kambanSlice.js"
+import kambanSlice from "../features/kambanSlice.js"
 export const store = configureStore({
-reducer:{ kambanBoard }
+reducer:{ kambanSlice }
 })
 

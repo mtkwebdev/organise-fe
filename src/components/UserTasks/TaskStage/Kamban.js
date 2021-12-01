@@ -1,102 +1,109 @@
-import React, {useState, useRef} from 'react'
-// import TaskCard from '../Cards/TaskCard'
-// import TaskColumns from './TaskColumns'
-// import './TasksDisplay.scss'
+import React, {useState, useEffect, useRef} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import './kambanStyles.scss'
-// import {Card} from 'react-bootstrap'
+
+// Redux Actions 
+import {addColumn, addTasks, dragActions} from '../../../features/kambanSlice.js'
+
 
 function Kamban() {
+// Variables\\
+    //// State and Redux related Variables 
+    const dispatch = useDispatch()
+    const boardData = useSelector(state => {return state.kambanSlice.kambanBoard})
+    const stateTitles = useSelector(state => {return state.kambanSlice.kambanBoard.titles})
+    const stateTasks = useSelector(state => {return state.kambanSlice.kambanBoard.tasks})
 
-const defaultState = [    
-    {
-        titles: 'Column 1',
-        tasks: [
-            'This is a task 1,1',
-            'This is a task 2,1',
-        ]
-    },
-    {
-        titles: 'Column 2',
-        tasks: [
-            'This is a task 1,2',
-            'This is a task 2,2',
-            'This is a task 2,3',
-            'This is a task 2,4',
-            'This is a task 2,5',
-            'This is a task 2,6',
-            'This is a task 2,7',
-            'This is a task 2,8',
-            'This is a task 2,9',
-        ]
-    },
-    {
-        titles: 'Column 3',
-        tasks: [
-           'This is a task 3,1',
-           'This is a task 3,2',
-           'This is a task 3,3',
-        ]
-    },
-    {
-        titles: 'Column 4',
-        tasks: []
-    },
-]
+    //// mapping and updating Kamban board state
+    const [boardState, setBoardState] = useState(boardData)
+    const [drag, setDrag] = useState({
+        start: 0,
+        end: 0
+    })
+    const [value, setValue] = useState({
+        title: '',
+        task: ''
+    })
+//END Variables\\
 
-const stateTemplate = {
-    titles: '',
-    tasks: [
-       'This is a task',
-    ]
-}
+// Run and Set Functions Below \\
+    //// input values
+    const columnValue = useRef(null)
+    const taskValue = useRef(null)
+    const innerTaskText = taskValue.value
 
-const [content, setContent] = useState(defaultState) 
+    //// Use Effect Hook
+    useEffect(() => {
+        setBoardState(boardData)
+    }, [boardData])
 
-const newTask = useRef()
+    //// Custom Logic and Functions 
+    function newColumns(){
+        dispatch(addColumn('new Column'))
+        // {console.log(boardData)}
+    }
 
-function addNewColumn(addTitle){
-    setContent({
-        titles: addTitle,
-        tasks: []})
-}
-// function addNewTask(e, parentColumn){
-function addNewTask(){
-    // console.log(parentColumn.concat({task:[e.target.value]}))
-    console.log('hello')
-}
+    function newTasks(boardIndex, value){
+        // dispatch(addTasks({index: boardIndex, task:'tings'}))
+        if (value === '' || (undefined || null)){return } else {dispatch(addTasks({index: boardIndex, task: value}))}
+        console.log(value)
+    }
 
-    if (content) {
+    function dragEvents(index1, index2, task1, task2){
+        // window.addEventListener('dragend', (index1)=>{
+        //     console.log(index1)
+        // })
+    }
+
+    function logs(e){
+        
+    }
+// END >>>> Functions \\
+
+//Render and JSX\\
         return (
             <div className="dndContainer">
                 <div className="dndGroups">
-                    {content.map((column)=>(
-                    <div key={column.titles.length +1} className="columns">
-                        <div className="column">
-                        {column.titles}
-                            <div className="addTask" onCLick={addNewTask}>Add Task</div> 
-                            {/* <input name='task' placeholder="Type New Task Here!" type="text"  onBlur={(e)=>{addNewTask(e,column.tasks)}}/> */}
-                            <input name='task' placeholder="Type New Task Here!" type="text" ref={newTask} />
-                                {column.tasks.map((task)=>(
-                            <div key={column.tasks.length} draggable onClick={()=>{console.log(column.titles, task)}} className="dndItems">
-                                    {task}
-                                    <span>edit</span>
-                            </div>
-                                ))}
-                        </div>
-                    </div>
-                    ))}
-                </div>
-                <div className="addColumns" onClick={addNewColumn}>Add a group</div>
+                    {boardState.map((board, boardIndex)=>{
+/* Columns */
+                        return (
+                            
+                            <div 
+                            className="column" key={Math.random()} draggable 
+                            // onDragStart={()=>{dragEvents(boardIndex)}}
+                            // onDragStart={()=>{setDrag(drag.start, boardIndex)}}
+                            // onDragEnd={()=>{setDrag(drag.end, boardIndex); console.log(drag)}}
+                            // onDragStart={()=>{setDrag(drag.start = [boardIndex]); console.log("started " + drag.start)}}
+                            // onDragEnter={()=>{setDrag(drag.end = [boardIndex]); console.log("ended " + drag.end)}}
+                            >
+                                <input className="listTitle" type="text" placeholder="Click here to add a Title!" />
+                                <div className="addTasks">
+                                    <input className="newTask" type="text" placeholder="Add a New Task?"   
+                                    onBlur={(e)=>{newTasks(boardIndex, e.target.value)}}/>
+                                    <span>+</span>
+                                </div>
+
+{/* Task Cards */}
+                                {board.tasks.map((task, taskIndex)=>{
+                                    return (
+
+                                        <div className="dndItems" key={Math.random()} draggable  
+                                        // onDragStart={()=>{(console.log(`Drag started from Column: ${boardIndex + 1}, and over Task: ${taskIndex + 1}`))}}
+                                        // onDragEnter={()=>{console.log(boardIndex, 'x', taskIndex )}}
+                                        // onDragEnter={()=>{console.log(`Drag Ended on Column Index: ${boardIndex + 1}, and over Task: ${taskIndex + 1}` )}}
+                                        >
+                                            <div >{task}</div><span>...</span>
+                                        </div>
+
+                                    )})}
+
+                            </div>)
+                    })}
+                </div> 
+                <div className="addColumns" onClick={()=>{newColumns()}}> + Add a List</div>
+                {/* {console.log(boardData)} */}
             </div>
         )
-    }
-    else {
-        return (
-            <div className="dndContainer">
-            <div className="addColumns" >Add a group</div>
-            </div>
-        )
-    }
         
 }
 
