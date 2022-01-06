@@ -21,8 +21,6 @@ function TaskCard({props}) {
   }
   // dispatch(addCard(cardTask));
 
-
-
     return (
         <> 
             <Card className=" taskCard">

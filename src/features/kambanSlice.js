@@ -4,7 +4,7 @@ const initialState = {
     kambanBoard:[
         {
             titles: 'Column 1',
-            tasks: ['tawefwefkw;efkw;efkwefkweofkw;efksk', 'task', 'task']
+            tasks: ['hello', 'task', 'task']
         },
         {
             titles: 'Column 2',
