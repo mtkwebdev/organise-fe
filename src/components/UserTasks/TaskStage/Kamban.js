@@ -2,13 +2,13 @@ import React, {useState, useEffect, useRef} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import './kambanStyles.scss'
 
-// Redux Actions 
+// Redux Actions
 import {addColumn, addTasks, dragActions} from '../../../features/kambanSlice.js'
 
 
 function Kamban() {
 // Variables\\
-    //// State and Redux related Variables 
+    //// State and Redux related Variables
     const dispatch = useDispatch()
     const boardData = useSelector(state => {return state.kambanSlice.kambanBoard})
     const stateTitles = useSelector(state => {return state.kambanSlice.kambanBoard.titles})
@@ -37,7 +37,7 @@ function Kamban() {
         setBoardState(boardData)
     }, [boardData])
 
-    //// Custom Logic and Functions 
+    //// Custom Logic and Functions
     function newColumns(){
         dispatch(addColumn('new Column'))
         // {console.log(boardData)}
@@ -56,7 +56,7 @@ function Kamban() {
     }
 
     function logs(e){
-        
+
     }
 // END >>>> Functions \\
 
@@ -64,18 +64,20 @@ function Kamban() {
         return (
             <div className="dndContainer">
                 <div className="dndGroups">
-                {boardState.forEach((board)=>{
-                    let newData = [board.columnIndex, board.titles]
-                    newData[0].sort()
-                    console.log(newData)
-                })}
-                    {boardState.map((board, boardIndex)=>{
+                    {boardState.slice(0).sort((a, b) => (a.columnIndex > b.columnIndex) ? 1 : -1).map((board)=> {
+                        console.log(board)
+                        // let newData = [board.columnIndex, board.titles]
+                        // newData[0].sort()
+                        // console.log(newData)
+                    })}
+
+                    {boardState.slice(0).sort((a, b) => (a.columnIndex > b.columnIndex) ? 1 : -1).map((board)=>{
                         return (
-                            
+
                             <div className="column" key={Math.random()} draggable >
                                 <input className="listTitle" type="text" placeholder="Click here to add a Title!" />
                                 <div className="addTasks">
-                                    <input className="newTask" type="text" placeholder="Add a New Task?"   
+                                    <input className="newTask" type="text" placeholder="Add a New Task?"
                                     // onBlur={(e)=>{newTasks(boardIndex, e.target.value)}}
                                     />
                                     <span>+</span>
@@ -92,12 +94,12 @@ function Kamban() {
 
                             </div>)
                     })}
-                </div> 
+                </div>
                 <div className="addColumns" onClick={()=>{newColumns()}}> + Add a List</div>
                 {console.log(boardData)}
             </div>
         )
-        
+
 }
 
 export default Kamban
