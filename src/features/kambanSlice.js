@@ -4,15 +4,18 @@ const initialState = {
     kambanBoard:[
         {
             titles: 'Column 1',
-            tasks: ['hello', 'task', 'task']
+            columnIndex: 0,
+            tasks: [{task: "hello", index: 0},{task: "hello", index: 1},{task: "hello", index: 2}]
         },
         {
             titles: 'Column 2',
-            tasks: ['task' ]
+            columnIndex: 2,
+            tasks: [{task: "hello", index: 0}]
         },
         {
             titles: 'Column 3',
-            tasks: ['task', 'task' ]
+            columnIndex: 1,
+            tasks: [{task: "Hi", index: 0},{task: "hello", index: 1},{task: "Task", index: 2}]
         },
     ]
 }

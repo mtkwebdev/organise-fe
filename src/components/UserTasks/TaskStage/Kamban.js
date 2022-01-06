@@ -64,24 +64,28 @@ function Kamban() {
         return (
             <div className="dndContainer">
                 <div className="dndGroups">
+                {boardState.forEach((board)=>{
+                    let newData = [board.columnIndex, board.titles]
+                    newData[0].sort()
+                    console.log(newData)
+                })}
                     {boardState.map((board, boardIndex)=>{
-/* Columns */
                         return (
                             
                             <div className="column" key={Math.random()} draggable >
                                 <input className="listTitle" type="text" placeholder="Click here to add a Title!" />
                                 <div className="addTasks">
                                     <input className="newTask" type="text" placeholder="Add a New Task?"   
-                                    onBlur={(e)=>{newTasks(boardIndex, e.target.value)}}/>
+                                    // onBlur={(e)=>{newTasks(boardIndex, e.target.value)}}
+                                    />
                                     <span>+</span>
                                 </div>
 
 {/* Task Cards */}
-                                {board.tasks.map((task, taskIndex)=>{
+                                {board.tasks.map((task)=>{
                                     return (
-
                                         <div className="dndItems" key={Math.random()} draggable >
-                                            <div >{task}</div><span>...</span>
+                                            <div >{task.task}</div><span>...</span>
                                         </div>
 
                                     )})}
@@ -90,7 +94,7 @@ function Kamban() {
                     })}
                 </div> 
                 <div className="addColumns" onClick={()=>{newColumns()}}> + Add a List</div>
-                {/* {console.log(boardData)} */}
+                {console.log(boardData)}
             </div>
         )
         
