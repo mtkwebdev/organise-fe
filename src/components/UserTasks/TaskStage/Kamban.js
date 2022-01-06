@@ -45,7 +45,7 @@ function Kamban() {
 
     function newTasks(boardIndex, value){
         // dispatch(addTasks({index: boardIndex, task:'tings'}))
-        if (value === '' || (undefined || null)){return } else {dispatch(addTasks({index: boardIndex, task: value}))}
+        if (value === '' || (undefined || null)){ return } else {dispatch(addTasks({index: boardIndex, task: value}))}
         console.log(value)
     }
 
@@ -68,14 +68,7 @@ function Kamban() {
 /* Columns */
                         return (
                             
-                            <div 
-                            className="column" key={Math.random()} draggable 
-                            // onDragStart={()=>{dragEvents(boardIndex)}}
-                            // onDragStart={()=>{setDrag(drag.start, boardIndex)}}
-                            // onDragEnd={()=>{setDrag(drag.end, boardIndex); console.log(drag)}}
-                            // onDragStart={()=>{setDrag(drag.start = [boardIndex]); console.log("started " + drag.start)}}
-                            // onDragEnter={()=>{setDrag(drag.end = [boardIndex]); console.log("ended " + drag.end)}}
-                            >
+                            <div className="column" key={Math.random()} draggable >
                                 <input className="listTitle" type="text" placeholder="Click here to add a Title!" />
                                 <div className="addTasks">
                                     <input className="newTask" type="text" placeholder="Add a New Task?"   
@@ -87,11 +80,7 @@ function Kamban() {
                                 {board.tasks.map((task, taskIndex)=>{
                                     return (
 
-                                        <div className="dndItems" key={Math.random()} draggable  
-                                        // onDragStart={()=>{(console.log(`Drag started from Column: ${boardIndex + 1}, and over Task: ${taskIndex + 1}`))}}
-                                        // onDragEnter={()=>{console.log(boardIndex, 'x', taskIndex )}}
-                                        // onDragEnter={()=>{console.log(`Drag Ended on Column Index: ${boardIndex + 1}, and over Task: ${taskIndex + 1}` )}}
-                                        >
+                                        <div className="dndItems" key={Math.random()} draggable >
                                             <div >{task}</div><span>...</span>
                                         </div>
 
