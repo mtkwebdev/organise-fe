@@ -5,7 +5,7 @@ const initialState = {
         {
             titles: 'Column 1',
             columnIndex: 0,
-            tasks: [{task: "hello", index: 0},{task: "hello", index: 1},{task: "hello", index: 2}]
+            tasks: [{task: "111", index: 0},{task: "222", index: 2},{task: "333", index: 1}]
         },
         {
             titles: 'Column 2',
@@ -16,6 +16,11 @@ const initialState = {
             titles: 'Column 3',
             columnIndex: 1,
             tasks: [{task: "Hi", index: 0},{task: "hello", index: 1},{task: "Task", index: 2}]
+        },
+        {
+            titles: 'Column 4',
+            columnIndex: 3,
+            tasks: [{task: "333", index: 2},{task: "222", index: 1},{task: "111", index: 0}]
         },
     ]
 }
