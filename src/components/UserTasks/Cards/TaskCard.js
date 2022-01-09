@@ -6,34 +6,21 @@ import { addCard } from '../../../features/kambanSlice'
 import {Card} from 'react-bootstrap'
 import './TaskCards.scss'
 
-function TaskCard({props}) {
-  // eslint-disable-next-line 
-  const [cardTask, setCardTask] = useState([])
-  // const dispatch = useDispatch();
-  // const tasks = useSelector(state => {return state.kambanBoard.cards})
-  
-  useEffect(() => {
-    console.log("Card Content"+cardTask)
-  }, [cardTask])
-  
-  const collectTasks = (e) => {
-    setCardTask(cardTask.concat({[e.target.id]: e.target.value}))
+function TaskCard({taskData}) {
+
+  for (let i1 = 0; i1 < taskData.length; i1++ ){
+    // console.log(taskData[i1].task)
+    const allTasks = taskData[i1].task
+    for (let i2 = 0; i2 < allTasks[i1].length; i2++ ){
+    }
   }
-  // dispatch(addCard(cardTask));
-
-
+  console.log(taskData)
 
     return (
-        <> 
-            <Card className=" taskCard">
-                <input name="taskCardText" id="taskCardText" className="taskCardText" rows="1" placeholder="Add your task here!" onBlur={e=>{collectTasks(e)}}></input>
-                <div className="cardActionsBottom">
-              <div className="taskCardPriority cardPriorityLow" >Low</div>
-                <div className="cardSoftwareActions"  >Completed</div>
-                <div className="cardSoftwareActions" >Archive</div>
-              </div>
-            </Card>
-      </>
+            <>
+                {/* {console.log(taskData)} */}
+                {/* {taskData} */}
+            </>
     )
 }
 
