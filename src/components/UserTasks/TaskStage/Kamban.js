@@ -55,54 +55,13 @@ function Kamban({props}) {
         //     console.log(index1)
         // })
     }
-
-    function logs(e){
-
-    }
-
-    // let columns = []
-    // let tasks = []
-    // let aaaa = []
-    // let organisedTasks = [] 
     
-    //////////
-        // boardState.slice(0).sort((a, b) => (a.columnIndex > b.columnIndex) ? 1 : -1).map((board)=> {
-        //     boards = [board]; 
-        // })
-
-        //////
-        // boardState.map((eachColumn)=>{return (
-        //     columns.push(eachColumn)
-        //     tasks.push(eachColumn.tasks)
-        // )})
-        // console.log(tasks)
-
-        /////
-        // columns.map((eachTask)=> tasks.push(eachTask.tasks))
-        // for (let i = 0; i < tasks.length; i++){
-            // console.log(tasks[i].length)
-            // for (let x = 0; x < tasks[i].length; x++){
-            //     console.log(tasks[i][x])
-                // another.split(0).sort((a,b)=> a.tasks[i][x].index > b.tasks[i][x].index ? 1 : -1).map((result) => organisedTasks.push())
-        //     }
-        // }
-        // console.log(organisedTasks)
-    
-
-// END >>>> Functions \\
-
 //Render and JSX\\
         return (
             <div className="dndContainer">
                 <div className="dndGroups">
-                    {/* {boardState.slice(0).sort((a, b) => (a.columnIndex > b.columnIndex) ? 1 : -1).map((board)=> {
-                        console.log(board)
-                    })} */}
-                    {/* {console.log(columns, tasks)} */}
-
                     {boardState.slice(0).sort((a, b) => (a.columnIndex > b.columnIndex) ? 1 : -1).map((column, columnIndex)=>{
                         return (
-
                             <div className="column" key={Math.random()} draggable >
                                 <input className="listTitle" type="text" placeholder="Click here to add a Title!" />
                                 <div className="addTasks">
@@ -111,22 +70,11 @@ function Kamban({props}) {
                                     />
                                     <span>+</span>
                                 </div>
-
-                                <TaskCard taskData={column.tasks}></TaskCard>
-{/* Task Cards */}
-                         {/* {column.tasks.split(0).sort((a,b)=>(a.index > b.index) ? 1: -1 ).map((taskData)=>{ */}
-                         {column.tasks.map((taskData, taskDataIndex)=>{
-                            return (
-                                <div className="dndItems" key={Math.random()} draggable >
-                                {/* { taskData.task.split(0).sort(()=>((taskData.index) >= taskDataIndex) ? 1 : -1).map((sortedTasks)=>{
-                                    console.log(sortedTasks)
-                                    return sortedTasks
-                                })} */}
-                                </div>
-
-                            )})}
-
-                            
+                            {column.tasks.map((item, currentTaskIndex)=>{ 
+                                const newIndex = item.index
+                                console.log(`( Old Index: ${currentTaskIndex}, Old Task Order: ${column.tasks[currentTaskIndex].task} ) | ( New Index: ${newIndex}  | New Task Order: ${column.tasks[newIndex].task} )`)
+                                return (<div className='card' draggable>{column.tasks[newIndex].task}</div>)
+                            })}
                             </div>)
                     })}
                 </div>

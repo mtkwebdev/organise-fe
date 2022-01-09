@@ -12,9 +12,9 @@ function TaskCard({taskData}) {
     // console.log(taskData[i1].task)
     const allTasks = taskData[i1].task
     for (let i2 = 0; i2 < allTasks[i1].length; i2++ ){
-      console.log(taskData.length)
     }
   }
+  console.log(taskData)
 
     return (
             <>
