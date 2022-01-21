@@ -7,7 +7,7 @@ import { addCard } from '../../../features/kambanSlice'
 import './TaskCards.scss'
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 
-function TaskCard({taskData, mappedColumns, idColumn}) {
+function TaskCard({taskData, mappedColumns}) {
     // const [taskIndex, setTaskIndex] = useState(taskData)
 
     // const handleDragEnd = (e, col,task)=>{
@@ -20,49 +20,36 @@ function TaskCard({taskData, mappedColumns, idColumn}) {
 
 //   console.log(`( Old Index: ${currentTaskIndex}, Old Task Order: ${taskData[currentTaskIndex].task} ) | ( New Index: ${newIndex}  | New Task Order: ${taskData[newIndex].task} )`)
 
-    const endedDrag = () =>{}
+
 
     return (
         <>
-            <DragDropContext onDragEnd={endedDrag} key={"wefnwle"}>
-                        
-                {taskData.map((data, currentTaskIndex)=>{ 
-                    const newIndex = data.taskStateIndex
-                    return (
-                        <Droppable droppableId="droppable-1" type="PERSON" key={idColumn}>
-                            {(provided, snapshot) => (
-                                <div
-                                ref={provided.innerRef}
-                                style={{ backgroundColor: snapshot.isDraggingOver ? 'lighgrey' : 'none' }}
-                                {...provided.droppableProps}
-                                key={"div" + idColumn}
-                                >
-                                        <Draggable draggableId="draggable-1" index={currentTaskIndex} key={currentTaskIndex}> 
-                                            {(provided, snapshot) => (
-                                                <div
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                key={"task" +currentTaskIndex}
-                                                >
-                                                    <div className='dndTasks'   
-                                                        id={`${newIndex} ${currentTaskIndex}`} 
-                                                        key={`${data.taskID + data.task}`}
-                                                        onDragEnter={()=>{console.log(currentTaskIndex,)}}
+  
+                                    {taskData.map((data, currentTaskIndex)=>{ 
+                                        const newIndex = data.taskStateIndex
+                                        return (
+                                            <Draggable draggableId="draggable-1" index={currentTaskIndex} key={currentTaskIndex}> 
+                                                {(provided, snapshot) => (
+                                                    <div
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    key={currentTaskIndex}
                                                     >
-                                                            {taskData[newIndex].task}
-                                                    </div>
+                                                        <div className='dndTasks'   
+                                                            id={`${newIndex} ${currentTaskIndex}`} 
+                                                            key={`${data.taskID + data.task}`}
+                                                            onDragEnter={()=>{console.log(currentTaskIndex,)}}
+                                                        >
+                                                                {taskData[newIndex].task}
+                                                        </div>
 
-                                                </div>
-                                            )}
-                                        </Draggable>
-                                        {provided.placeholder}
-                                </div>
-                            )}
-                        </Droppable>
-                    )
-                })}
-             </DragDropContext>
+                                                    </div>
+                                                )}
+                                            </Draggable>
+                                        )
+                                    })}
+
         </>
     )
 }

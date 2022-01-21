@@ -13,23 +13,43 @@ function TaskColumns({titles, columnID, tasks, columnMappedIndex}) {
         console.log(`index: ${boardIndex}, task: ${value}`)
     }
 
+    const endedDrag = () =>{}
+
     return (
-            <div className='dndColumns' >
-                <div className="column" key={columnID} >
-                    <input className="listTitle" type="text" placeholder="Click here to add a Title!" />
-                    <div className="addTasks">
-                        <input 
-                        className="newTask" type="text" 
-                        placeholder="Add a New Task?"
-                        // onBlur={(e)=>{newTasks(columnMappedIndex, e.target.value)}}
-                        onKeyUp={(e)=>{ return (e.key === "Enter") ? newTasks(columnMappedIndex, e.target.value) : null}}
-                        />
-                        <span>+</span>
-                    </div>
-                    <TaskCard idColumn={columnID} taskData={tasks} mappedColumns={columnMappedIndex}/>
-                </div>  
-            </div>
+
+
+                                    <div className="column" key={columnID} >
+                                        <input className="listTitle" type="text" placeholder="Click here to add a Title!" />
+                                        <div className="addTasks">
+                                            <input 
+                                            className="newTask" type="text" 
+                                            placeholder="Add a New Task?"
+                                            // onBlur={(e)=>{newTasks(columnMappedIndex, e.target.value)}}
+                                            onKeyUp={(e)=>{ return (e.key === "Enter") ? newTasks(columnMappedIndex, e.target.value) : null}}
+                                            />
+                                            <span>+</span>
+                                        </div>
+
+                                        <DragDropContext onDragEnd={endedDrag}>
+                                            <Droppable droppableId="droppable-1" type="PERSON">
+                                                {(provided, snapshot) => (
+                                                    <div
+                                                    ref={provided.innerRef}
+                                                    style={{ backgroundColor: snapshot.isDraggingOver ? 'lighgrey' : 'none' }}
+                                                    {...provided.droppableProps}
+                                                    >   
+                                                    <div>
+
+                                                        <TaskCard idColumn={columnID} taskData={tasks} mappedColumns={columnMappedIndex}/>
+                                                    </div>
+                                                        {provided.placeholder}
+                                                    </div>
+                                                )}
+                                            </Droppable>
+                                        </DragDropContext>
+                                    </div>  
     )
+
 }
 
 export default TaskColumns
