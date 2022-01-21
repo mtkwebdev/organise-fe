@@ -24,32 +24,30 @@ function TaskCard({taskData, mappedColumns}) {
 
     return (
         <>
-  
-                                    {taskData.map((data, currentTaskIndex)=>{ 
-                                        const newIndex = data.taskStateIndex
-                                        return (
-                                            <Draggable draggableId="draggable-1" index={currentTaskIndex} key={currentTaskIndex}> 
-                                                {(provided, snapshot) => (
-                                                    <div
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    key={currentTaskIndex}
-                                                    >
-                                                        <div className='dndTasks'   
-                                                            id={`${newIndex} ${currentTaskIndex}`} 
-                                                            key={`${data.taskID + data.task}`}
-                                                            onDragEnter={()=>{console.log(currentTaskIndex,)}}
-                                                        >
-                                                                {taskData[newIndex].task}
-                                                        </div>
+            {taskData.map((data, currentTaskIndex)=>{ 
+                const newIndex = data.taskStateIndex
+                return (
+                    <Draggable draggableId="draggable-1" index={currentTaskIndex} key={currentTaskIndex}> 
+                        {(provided, snapshot) => (
+                            <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            key={currentTaskIndex}
+                            >
+                                <div className='dndTasks'   
+                                    id={`${newIndex} ${currentTaskIndex}`} 
+                                    key={`${data.taskID + data.task}`}
+                                    onDragEnter={()=>{console.log(currentTaskIndex,)}}
+                                >
+                                        {taskData[newIndex].task}
+                                </div>
 
-                                                    </div>
-                                                )}
-                                            </Draggable>
-                                        )
-                                    })}
-
+                            </div>
+                        )}
+                    </Draggable>
+                )
+            })}
         </>
     )
 }

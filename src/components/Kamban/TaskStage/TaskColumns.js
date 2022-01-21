@@ -29,17 +29,14 @@ function TaskColumns({titles, columnID, tasks, columnMappedIndex}) {
             </div>
 
             <DragDropContext onDragEnd={endedDrag}>
-                <Droppable droppableId="droppable-1" type="PERSON">
+                <Droppable droppableId="droppable-1" type="TASK" mode="standard" direction={"horizontal" || "vertical"} > 
                     {(provided, snapshot) => (
                         <div
                         ref={provided.innerRef}
                         style={{ backgroundColor: snapshot.isDraggingOver ? 'lighgrey' : 'none' }}
                         {...provided.droppableProps}
                         >   
-                        <div>
-
                             <TaskCard idColumn={columnID} taskData={tasks} mappedColumns={columnMappedIndex}/>
-                        </div>
                             {provided.placeholder}
                         </div>
                     )}

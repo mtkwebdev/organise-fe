@@ -26,7 +26,7 @@ function Kamban({props}) {
                 {savedState.slice(0).sort((a, b) => (a.columnStateIndex > b.columnStateIndex) ? 1 : -1).map(({titles, columnStateIndex, columnID, tasks}, columnMappedIndex)=>{
                     return (
                         <DragDropContext onDragEnd={endedDrag}>
-                            <Droppable droppableId="droppable-2" type="PERSON">
+                            <Droppable droppableId="droppable-2" type="COLUMN" mode="standard" direction={"horizontal"}>
                                 {(provided, snapshot) => (
                                     <div ref={provided.innerRef} {...provided.droppableProps}
                                     style={{ backgroundColor: snapshot.isDraggingOver ? 'lighgrey' : 'none' }}
