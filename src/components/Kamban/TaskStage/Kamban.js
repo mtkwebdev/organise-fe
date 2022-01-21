@@ -48,7 +48,6 @@ function Kamban({props}) {
                                                         columnMappedIndex={columnMappedIndex} 
                                                         tasks={tasks}
                                                         />
-
                                                         {provided.placeholder}
 
                                                     </div>
